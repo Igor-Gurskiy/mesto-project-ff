@@ -54,7 +54,7 @@ module.exports = (env) => {
       },
         {
           // применять это правило только к CSS-файлам
-          test: /\.s?css$/i,
+          test: /\.css$/i,
           // при обработке этих файлов нужно использовать
           // MiniCssExtractPlugin.loader и css-loader
           use: [MiniCssExtractPlugin.loader, {
