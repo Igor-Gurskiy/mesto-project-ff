@@ -52,6 +52,7 @@ const handleCardSubmit = (evt) => {
   const newCard = {};
   newCard.name = imageNameInput.value;
   newCard.link = imageLinkInput.value;
+
   const card = createCard(newCard, openPopupImage, addLike, placeTemplate);
   cardsContainer.prepend(card);
 
