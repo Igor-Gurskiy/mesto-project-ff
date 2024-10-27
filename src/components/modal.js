@@ -24,6 +24,7 @@ const openModal = (modal) => {
 const closeModal = (modal) => {
   modal.classList.toggle("popup_is-opened");
   document.removeEventListener("keydown", handleEscKeyUp);
+  document.removeEventListener("click", clickCloseModal);
 };
 
 export { openModal, closeModal };
