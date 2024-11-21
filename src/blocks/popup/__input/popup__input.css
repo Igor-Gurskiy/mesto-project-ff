@@ -2,16 +2,43 @@
   width: 100%;
   height: 47px;
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 14px;
   line-height: 18px;
   box-sizing: border-box;
   padding: 10px 0 0;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .popup__input:last-of-type {
   margin-bottom: 0;
+}
+
+.popup__input_type_error {
+  border-bottom-color: #ff0000;
+}
+
+.form__input-error {
+  position: absolute;
+  opacity: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  top: calc(100%);
+  transition: 0.3s;
+  z-index: 1;
+}
+
+.popup__error_visible {
+  opacity: 1;
+}
+
+.form_field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-block-end: 10px;
 }
 
 @media screen and (max-width: 568px) {

@@ -16,15 +16,15 @@ const clickCloseModal = (evt) => {
 };
 
 const openModal = (modal) => {
-  modal.classList.toggle("popup_is-opened");
+  modal.classList.add("popup_is-opened");
   document.addEventListener("keydown", handleEscKeyUp);
-  document.addEventListener("click", clickCloseModal);
+  document.addEventListener("mousedown", clickCloseModal);
 };
 
 const closeModal = (modal) => {
-  modal.classList.toggle("popup_is-opened");
+  modal.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", handleEscKeyUp);
-  document.removeEventListener("click", clickCloseModal);
+  document.removeEventListener("mousedown", clickCloseModal);
 };
 
 export { openModal, closeModal };
