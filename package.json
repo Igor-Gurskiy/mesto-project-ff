@@ -7,7 +7,7 @@
     "build": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
     "dev": "webpack serve",
-    "predeploy": "npm run build",
+    "predeploy": "rm -rf node_modules/.cache/gh-pages && npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "",
@@ -32,3 +32,4 @@
     "core-js": "^3.38.1"
   }
 }
+https://Igor-Gurskiy.github.io/mesto-project-ff/
