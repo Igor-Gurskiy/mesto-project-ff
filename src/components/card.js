@@ -1,4 +1,6 @@
 // @todo: Функция создания карточки
+import { deleteLike, putLike } from "./api";
+
 const createCard = (
   cardData,
   openPopupImage,
@@ -33,7 +35,6 @@ const createCard = (
 
   buttonLike.addEventListener("click", () => {
     addLike(buttonLike, cardData, likesQuantity);
-    buttonLike.classList.toggle("card__like-button_is-active");
   });
 
   if (cardData.likes.some((like) => like._id === idProfile)) {
@@ -44,44 +45,20 @@ const createCard = (
 };
 
 const addLike = (buttonLike, cardData, likesQuantity) => {
-  if (buttonLike.classList.contains("card__like-button_is-active")) {
-    deleteLike(cardData)
-      .then((res) => res.json())
-      .then((res) => {
-        likesQuantity.textContent = res.likes.length;
-      });
-  } else {
-    putLike(cardData)
-      .then((res) => res.json())
-      .then((res) => {
-        likesQuantity.textContent = res.likes.length;
-      });
-  }
-};
-
-const deleteLike = (cardData) => {
-  return fetch(
-    `https://nomoreparties.co/v1/wff-cohort-27/cards/likes/${cardData._id}`,
-    {
-      method: "DELETE",
-      headers: {
-        authorization: "eee47a36-7f04-45e4-8ee5-646acc5ec68f",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-};
-const putLike = (cardData) => {
-  return fetch(
-    `https://nomoreparties.co/v1/wff-cohort-27/cards/likes/${cardData._id}`,
-    {
-      method: "PUT",
-      headers: {
-        authorization: "eee47a36-7f04-45e4-8ee5-646acc5ec68f",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const likeMethod = buttonLike.classList.contains(
+    "card__like-button_is-active"
+  )
+    ? deleteLike
+    : putLike;
+    
+  likeMethod(cardData._id)
+    .then((res) => {
+      likesQuantity.textContent = res.likes.length;
+      buttonLike.classList.toggle("card__like-button_is-active");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export { createCard, addLike };

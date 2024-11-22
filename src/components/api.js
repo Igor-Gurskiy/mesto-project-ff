@@ -6,7 +6,7 @@ const config = {
   },
 };
 
-const response = (res) => {
+const handleResponse = (res) => {
   if (res.ok) {
     return res.json();
   }
@@ -23,13 +23,13 @@ const deleteCard = (idCard) => {
 const getProfile = () => {
   return fetch(`${config.baseUrl}/users/me`, {
     headers: config.headers,
-  }).then(response);
+  }).then(handleResponse);
 };
 
 const getCards = () => {
   return fetch(`${config.baseUrl}/cards`, {
     headers: config.headers,
-  }).then(response);
+  }).then(handleResponse);
 };
 
 const patchProfile = (name, about) => {
@@ -40,7 +40,7 @@ const patchProfile = (name, about) => {
       name: name,
       about: about,
     }),
-  }).then(response);
+  }).then(handleResponse);
 };
 
 const patchCard = (name, link) => {
@@ -52,7 +52,7 @@ const patchCard = (name, link) => {
         name: name,
         link: link,
       }),
-    }).then(response)
+    }).then(handleResponse)
   );
 };
 
@@ -64,7 +64,7 @@ const patchAvatar = (link) => {
       body: JSON.stringify({
         avatar: link,
       }),
-    }).then(response)
+    }).then(handleResponse)
   );
 };
 
@@ -86,6 +86,20 @@ const headUrl = (link) => {
     });
 };
 
+const deleteLike = (cardDataId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardDataId}`, {
+    method: "DELETE",
+    headers: config.headers,
+  }).then(handleResponse);
+};
+
+const putLike = (cardDataId) => {
+  return fetch(`${config.baseUrl}/cards/likes/${cardDataId}`, {
+    method: "PUT",
+    headers: config.headers,
+  }).then(handleResponse);
+};
+
 export {
   deleteCard,
   getProfile,
@@ -93,4 +107,6 @@ export {
   patchProfile,
   patchCard,
   patchAvatar,
+  deleteLike,
+  putLike,
 };
