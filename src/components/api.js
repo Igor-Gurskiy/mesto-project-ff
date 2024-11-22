@@ -17,7 +17,8 @@ const deleteCard = (idCard) => {
   return fetch(`${config.baseUrl}/cards/${idCard}`, {
     method: "DELETE",
     headers: config.headers,
-  });
+  })
+  .then(handleResponse);
 };
 
 const getProfile = () => {
