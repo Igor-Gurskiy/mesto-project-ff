@@ -75,10 +75,14 @@ function hasInvalidInput(inputList) {
   });
 }
 
+const disableSubmitButton = (button, config) => {
+  button.disabled = true;
+  button.classList.add(config.inactiveButtonClass);
+}
+
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.disabled = true;
-    buttonElement.classList.add(validationConfig.inactiveButtonClass);
+    disableSubmitButton(buttonElement, validationConfig);
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(validationConfig.inactiveButtonClass);
@@ -96,8 +100,7 @@ const clearValidation = (formElement, validationConfig) => {
   inputList.forEach((inputElement) =>
     hideInputError(formElement, inputElement, validationConfig)
   );
-  buttonElement.disabled = true;
-  buttonElement.classList.add(validationConfig.inactiveButtonClass);
+    disableSubmitButton(buttonElement, validationConfig);
 };
 
 export { clearValidation, enableValidation };
