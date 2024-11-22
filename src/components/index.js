@@ -59,7 +59,7 @@ enableValidation(validationConfig);
 const handleProfileSubmit = (evt) => {
   evt.preventDefault();
 
-  renderLoading(false, formElementProfile);
+  renderLoading(true, formElementProfile);
 
   patchProfile(nameInput.value, jobInput.value)
     .then((data) => {
@@ -84,7 +84,7 @@ const openPopupImage = (image, caption) => {
 const handleCardSubmit = (evt) => {
   evt.preventDefault();
 
-  renderLoading(false, formElementImage);
+  renderLoading(true, formElementImage);
 
   patchCard(imageNameInput.value, imageLinkInput.value)
     .then((cardData) => {
@@ -208,11 +208,7 @@ popupOpenAvatar.addEventListener("click", () => {
 
 formElementAvatar.addEventListener("submit", handleAvatarSubmit);
 
-function renderLoading(isLoading, butt) {
-  const button = butt.querySelector(".popup__button");
-  if (isLoading) {
-    button.textContent = "Cохранение...";
-  } else {
-    button.textContent = "Сохранить";
-  }
+function renderLoading(isLoading, form) {
+  const button = form.querySelector(".popup__button");
+  button.textContent = isLoading ? "Cохранение..." : "Сохранить";
 }
